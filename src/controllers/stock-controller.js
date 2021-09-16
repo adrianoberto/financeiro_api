@@ -9,7 +9,7 @@ exports.listStocks = async (req, res) => {
         return res.status(200).send(data);
     } catch (e) {
         console.log(e);
-        return res.status(500).send({ message: 'Falha ao carregar as menções!' });
+        return res.status(500).send({ message: 'Falha ao carregar as menções!', error: e });
     }
 };
 
