@@ -8,9 +8,10 @@ exports.listStocks = async (req, res) => {
         const data = await repository.listStocks();
         return res.status(200).send(data);
     } catch (e) {
-        throw e;
+        
         console.log(e);
-        return res.status(500).send({ message: 'Falha ao carregar as menções!', error: e });
+        //return res.status(500).send({ message: 'Falha ao carregar as menções!', error: e });
+        return res.status(500).send(e);
     }
 };
 
