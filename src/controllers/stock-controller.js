@@ -7,11 +7,9 @@ exports.listStocks = async (req, res) => {
     try {
         const data = await repository.listStocks();
         return res.status(200).send(data);
-    } catch (e) {
-        
+    } catch (e) {        
         console.log(e);
-        //return res.status(500).send({ message: 'Falha ao carregar as menções!', error: e });
-        return res.status(500).send(e);
+        return res.status(500).send({ message: 'Falha ao carregar as stocks!'});
     }
 };
 
@@ -27,10 +25,10 @@ exports.createStock = async (req, res) => {
         await repository.createStock({
             name: req.body.name
         });
-        return res.status(201).send({ message: 'Menção cadastrada com sucesso!' });
+        return res.status(201).send({ message: 'Stock cadastrada com sucesso!' });
     } catch (e) {
         console.log(e);
-        return res.status(500).send({ message: 'Falha ao cadastrar a menção.' });
+        return res.status(500).send({ message: 'Falha ao cadastrar a stocks.' });
     }
 };
 
@@ -46,11 +44,11 @@ exports.updateStock = async (req, res) => {
     try {
         await repository.updateStock(req.params.id, req.body);
         return res.status(200).send({
-            message: 'Menção atualizada com sucesso!'
+            message: 'Stock atualizada com sucesso!'
         });
     } catch (e) {
         console.log(e);
-        return res.status(500).send({ message: 'Falha ao atualizar a menção.' });
+        return res.status(500).send({ message: 'Falha ao atualizar a stock.' });
     }
 };
 
@@ -59,10 +57,10 @@ exports.deleteStock = async (req, res) => {
     try {
         await repository.deleteStock(req.params.id);
         return res.status(200).send({
-            message: 'Menção removida com sucesso!'
+            message: 'Stock removida com sucesso!'
         });
     } catch (e) {
         console.log(e);
-        return res.status(500).send({ message: 'Falha ao remover a menção.' });
+        return res.status(500).send({ message: 'Falha ao remover a stock.' });
     }
 };
