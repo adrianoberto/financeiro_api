@@ -22,7 +22,7 @@ if(wallet) {
                 }
             },
             stockbroker: { 
-                _id: asset.stockbroker._id 
+                _id: asset.stockbroker._id,
                 shortName: asset.stockbroker.shortName
             },
             tags: asset.tags,
