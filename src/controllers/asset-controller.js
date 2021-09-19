@@ -1,20 +1,17 @@
-const mongoose = require('mongoose');
-const { validationResult } = require('express-validator');
-const repository = require('../repositories/wallet-repository');
-const transactionRepository = require('../repositories/transaction-repository');
-const earningRepository = require('../repositories/earning-repository');
+// const mongoose = require('mongoose');
+// const { validationResult } = require('express-validator');
+const repository = require('../repositories/asset-repository');
 
-// exports.listById = async (req, res) => {
-//     try {
-//         const data = await repository.listById(req.params.id);
-//         return res.status(200).json(data);
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(500).send({
-//             message: 'Falha ao carregar wallet'
-//         });
-//     }
-// };
+exports.listByWalletId = async (req, res) => {
+    try {
+        const data = await repository.listByWalletId(req.params.walletId);
+        return res.status(200).json(data || []);
+    } catch (e) {
+        return res.status(500).send({
+            message: 'Falha ao carregar wallet'
+        });
+    }
+};
 
 // exports.findByWalletId = async (req, res) => {
 //     try {

@@ -1,39 +1,46 @@
 const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
-const controller = require('../controllers/wallet-controller');
-const earningController = require('../controllers/earning-controller');
 
-//router.get('/', controller.list);
+const assetController = require('../controllers/asset-controller');
 
-router.get('/:id', controller.listById);
 
-router.get('/:id/totals', controller.totals);
+//const controller = require('../controllers/wallet-controller');
+//const earningController = require('../controllers/earning-controller');
 
-router.get('/:walletId/resumeStocks', controller.resumeStocks);
+// //router.get('/', controller.list);
 
-router.get('/:id/transactions', controller.findByWalletId);
+// router.get('/:id', controller.listById);
 
-router.post('/', controller.create);
+// router.get('/:id/totals', controller.totals);
 
-router.put('/:id', controller.update);
+// router.get('/:walletId/resumeStocks', controller.resumeStocks);
 
-router.delete('/:id', controller.delete);
+// router.get('/:id/transactions', controller.findByWalletId);
 
-router.post('/:id/assets', controller.addAsset);
+// router.post('/', controller.create);
 
-router.put('/:id/assets', controller.updateAsset);
+// router.put('/:id', controller.update);
 
-router.delete('/:walletId/assets/:assetId', controller.deleteAsset);
+// router.delete('/:id', controller.delete);
 
-router.get('/:walletId/earnings', earningController.findByWalletId);
+// router.post('/:id/assets', controller.addAsset);
 
-//router.get('/:walletId/earnings/', earningController.filterByWalletIdAndDate);
+// router.put('/:id/assets', controller.updateAsset);
 
-router.post('/:walletId/earnings', earningController.add);
+// router.delete('/:walletId/assets/:assetId', controller.deleteAsset);
 
-router.put('/:walletId/earnings', earningController.edit);
+// router.get('/:walletId/earnings', earningController.findByWalletId);
 
-router.delete('/:walletId/earnings/:earningId', earningController.delete);
+// //router.get('/:walletId/earnings/', earningController.filterByWalletIdAndDate);
+
+// router.post('/:walletId/earnings', earningController.add);
+
+// router.put('/:walletId/earnings', earningController.edit);
+
+// router.delete('/:walletId/earnings/:earningId', earningController.delete);
+
+
+router.get('/:walletId', assetController.listByWalletId);
 
 module.exports = router;
