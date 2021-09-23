@@ -41,6 +41,8 @@ const assetController = require('../controllers/asset-controller');
 // router.delete('/:walletId/earnings/:earningId', earningController.delete);
 
 
+router.get('/:walletId/stocks', assetController.listByStocksWalletId);
+
 router.get('/:walletId/fiis', assetController.listByFIIsWalletId);
 
 module.exports = router;

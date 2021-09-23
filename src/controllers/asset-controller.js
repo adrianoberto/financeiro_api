@@ -2,6 +2,17 @@
 // const { validationResult } = require('express-validator');
 const repository = require('../repositories/asset-repository');
 
+exports.listByStocksWalletId = async (req, res) => {
+    try {
+        const data = await repository.listByWalletIdAndTradingType(req.params.walletId, "STOCK");
+        return res.status(200).json(data || []);
+    } catch (e) {
+        return res.status(500).send({
+            message: 'Falha ao carregar wallet'
+        });
+    }
+};
+
 exports.listByFIIsWalletId = async (req, res) => {
     try {
         const data = await repository.listByWalletIdAndTradingType(req.params.walletId, "FII");
@@ -12,6 +23,7 @@ exports.listByFIIsWalletId = async (req, res) => {
         });
     }
 };
+
 
 // exports.findByWalletId = async (req, res) => {
 //     try {
