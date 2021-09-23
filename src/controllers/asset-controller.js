@@ -2,9 +2,9 @@
 // const { validationResult } = require('express-validator');
 const repository = require('../repositories/asset-repository');
 
-exports.listByWalletId = async (req, res) => {
+exports.listByFIIsWalletId = async (req, res) => {
     try {
-        const data = await repository.listByWalletId(req.params.walletId);
+        const data = await repository.listByWalletIdAndTradingType(req.params.walletId, "FII");
         return res.status(200).json(data || []);
     } catch (e) {
         return res.status(500).send({
