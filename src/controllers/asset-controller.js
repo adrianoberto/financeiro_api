@@ -5,7 +5,7 @@ const repository = require('../repositories/asset-repository');
 exports.listByStocksWalletId = async (req, res) => {
     try {
         const data = await repository.listByWalletIdAndTradingType(req.params.walletId, "STOCK");
-        return res.status(200).json(data || []);
+        return this.createResponse(res, data || [], 200);
     } catch (e) {
         return res.status(500).send({
             message: 'Falha ao carregar wallet'
@@ -16,7 +16,9 @@ exports.listByStocksWalletId = async (req, res) => {
 exports.listByFIIsWalletId = async (req, res) => {
     try {
         const data = await repository.listByWalletIdAndTradingType(req.params.walletId, "FII");
-        return res.status(200).json(data || []);
+        return res.status(200).json({
+            data: data || []
+        });
     } catch (e) {
         return res.status(500).send({
             message: 'Falha ao carregar wallet'
@@ -24,6 +26,15 @@ exports.listByFIIsWalletId = async (req, res) => {
     }
 };
 
+
+this.createResponse = (res, data, status, success=true, errorMsg=null) => {
+    res.status(status).json({
+        data,
+        success,
+        errorMsg,
+        total: (data || []).length
+    });
+}
 
 // exports.findByWalletId = async (req, res) => {
 //     try {

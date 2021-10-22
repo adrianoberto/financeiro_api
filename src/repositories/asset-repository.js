@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const StageAssets = mongoose.model('stage_assets');
 
-exports.listByWalletIdAndTradingType = (walletId, tradingType) => {    
-    return StageAssets.aggregate([
+exports.listByWalletIdAndTradingType = async (walletId, tradingType) => {    
+    var assets = await StageAssets.aggregate([
         {
             $match: { walletId: walletId, "ticker.category.type": tradingType }
         },
@@ -24,7 +24,14 @@ exports.listByWalletIdAndTradingType = (walletId, tradingType) => {
         {
             $sort: { _id: 1 }
         }
-    ]);    
+    ]).exec();
+
+    const totalPrice = this.calculateTotalPrice(assets);
+
+    return assets.map(asset => {        
+        asset.percent = this.calculatePercents(asset.totalPrice, totalPrice);
+        return asset;
+    });
 };
 
 exports.create = (data) => {
@@ -42,3 +49,10 @@ exports.update = (id, asset) => {
 exports.remove = (id) => {
     return StageAssets.remove({ _id: id });
 }
+
+this.calculateTotalPrice = (assets) =>
+    assets.reduce((totalPrice, asset) => totalPrice += asset.totalPrice, 0);
+
+
+this.calculatePercents = (assetTotalPrice, totalPrice) =>
+    ((assetTotalPrice * 100)/totalPrice).toFixed(2).replace('.', ',');
