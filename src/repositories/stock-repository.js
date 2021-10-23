@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 const Stocks = mongoose.model('Stocks');
 
-exports.listStocks = async () => {
-    //const res = await Stocks.find({}, 'Name -_id');
-    const res = await Stocks.find({});
-    return res;
-};
+// exports.listStocks = async () => {
+//     const res = await Stocks.find({}, 'tradingCode _id');    
+//     return res;
+// };
 
 exports.createStock = async data => {
     const stock = new Stocks(data);

@@ -1,19 +1,20 @@
 const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
+const baseController = require('./base-controller');
 const repository = require('../repositories/stockbroker-repository');
 
 // list
-// exports.list = async (req, res) => {
-//     try {
-//         const data = await repository.list();
-//         return res.status(200).send(data);
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(500).send({ 
-//             message: 'Falha ao carregar stockbroker' 
-//         });
-//     }
-// };
+exports.list = async (req, res) => {
+    try {
+        const data = await repository.list();
+        return baseController.createResponse(res, data || [], 200);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({ 
+            message: 'Falha ao carregar stockbroker' 
+        });
+    }
+};
 
 // // create
 // exports.create = async (req, res) => {

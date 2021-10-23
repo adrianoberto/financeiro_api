@@ -3,7 +3,9 @@ const router = express.Router();
 const { check } = require('express-validator');
 const controller = require('../controllers/ticker-controller');
 
-// router.get('/', controller.list);
+router.get('/', controller.list);
+
+router.get('/:type', controller.listType);
 
 // router.post('/', [
 //     check('name').isLength({min: 5, max: 7}).withMessage("O nome precisa ter no mínimo 5 caracteres."),

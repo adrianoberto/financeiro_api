@@ -1,23 +1,22 @@
 const mongoose = require('mongoose');
-const Stockbrokers = mongoose.model('Stockbrokers');
+const Stagestockbrokers = mongoose.model('stage_stockbrokers');
 
 exports.list = async () => {
-    //const res = await Stocks.find({}, 'Name -_id');
-    const res = await Stockbrokers.find({}, '-created -cnpj');
+    const res = await Stagestockbrokers.find({}, '-created -cnpj');
     return res;
 };
 
 exports.create = async data => {
-    const ticker = new Stockbrokers(data);
+    const ticker = new Stagestockbrokers(data);
     await ticker.save();
 };
 
 exports.update = async (id, data) => {
-    await Stockbrokers.findByIdAndUpdate(id, {
+    await Stagestockbrokers.findByIdAndUpdate(id, {
         $set: data
     });
 };
 
 exports.delete = async id => {
-    await Stockbrokers.findByIdAndDelete(id);
+    await Stagestockbrokers.findByIdAndDelete(id);
 };

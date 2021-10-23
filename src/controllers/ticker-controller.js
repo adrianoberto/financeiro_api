@@ -1,8 +1,32 @@
 const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
+const baseController = require('./base-controller.js');
 const repository = require('../repositories/ticker-repository');
 
 // list
+exports.list = async (req, res) => {
+    try {
+        const data = await repository.list();
+        return baseController.createResponse(res, data || [], 200);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({ message: 'Falha ao carregar as tickers!'});
+    }
+};
+
+
+// list by type
+exports.listType = async (req, res) => {
+    try {
+        const data = await repository.listByType(req.params.type);
+        return baseController.createResponse(res, data || [], 200);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({ message: 'Falha ao carregar as tickers!'});
+    }
+};
+
+
 // exports.list = async (req, res) => {
 //     const sort = req.query.sort;
 

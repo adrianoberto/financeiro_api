@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
+const baseController = require('./base-controller');
 const repository = require('../repositories/stock-repository');
 
 // list
 // exports.listStocks = async (req, res) => {
 //     try {
 //         const data = await repository.listStocks();
-//         return res.status(200).send(data);
+//         return baseController.createResponse(res, data || [], 200);
 //     } catch (e) {        
 //         console.log(e);
 //         return res.status(500).send({ message: 'Falha ao carregar as stocks!'});
