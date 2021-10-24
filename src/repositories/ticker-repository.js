@@ -7,7 +7,11 @@ exports.list = async (type) => {
 
 
 exports.listByType = async (type) => {    
-    return await StageTickers.find({ "category.type": type?.toUpperCase(), enabled: true }, 'tradingCode _id').sort({'created': 'asc'});
+    return await StageTickers
+        .find({ 
+            "category.type": type?.toUpperCase(), enabled: true }, 
+            "tradingCode _id category._id category.type"
+        ).sort({'created': 'asc'});
 };
 
 // exports.create = async data => {

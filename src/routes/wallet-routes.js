@@ -3,6 +3,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 
 const assetController = require('../controllers/asset-controller');
+const walletController = require('../controllers/wallet-controller');
 
 
 //const controller = require('../controllers/wallet-controller');
@@ -44,5 +45,7 @@ const assetController = require('../controllers/asset-controller');
 router.get('/:walletId/stocks', assetController.listByStocksWalletId);
 
 router.get('/:walletId/fiis', assetController.listByFIIsWalletId);
+
+router.post('/:id/assets', walletController.addAsset);
 
 module.exports = router;

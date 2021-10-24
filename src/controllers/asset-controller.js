@@ -27,6 +27,22 @@ exports.listByFIIsWalletId = async (req, res) => {
     }
 };
 
+// create
+exports.addToWallet = async (req, res) => {
+    try {
+        await repository.create(req.body);
+        return res.status(201).send({
+            message: 'wallet cadastrada com sucesso!'
+        });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({
+            message: 'Falha ao cadastrar wallet.'
+        });
+    }
+};
+
+
 // exports.findByWalletId = async (req, res) => {
 //     try {
 //         const data = await transactionRepository.findByWalletId(req.params.id);

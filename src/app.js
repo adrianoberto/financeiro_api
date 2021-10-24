@@ -13,6 +13,7 @@ const wallet = require('./models/wallet');
 const asset = require('./models/stageAsset');
 const tickers = require('./models/stageTicker');
 const stockbrokers = require('./models/stageStockbroker');
+const transactions = require('./models/stageTransaction');
 
 
 require('dotenv').config();

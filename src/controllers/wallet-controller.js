@@ -1,8 +1,29 @@
-const mongoose = require('mongoose');
-const { validationResult } = require('express-validator');
-const repository = require('../repositories/wallet-repository');
-const transactionRepository = require('../repositories/transaction-repository');
-const earningRepository = require('../repositories/earning-repository');
+// const mongoose = require('mongoose');
+// const { validationResult } = require('express-validator');
+// const walletrepository = require('../repositories/wallet-repository');
+// const transactionRepository = require('../repositories/transaction-repository');
+// const earningRepository = require('../repositories/earning-repository');
+
+
+const walletService = require('../services/wallet-service');
+
+
+// create
+exports.addAsset = async (req, res) => {
+
+    console.log(req.body);
+
+    try {
+        const data = await walletService.addAsset(req.body);
+        return res.status(201).send(data)
+    } catch (e) {        
+        return res.status(500).send({
+            message: e.toString()
+        });
+    }
+};
+
+
 
 // exports.listById = async (req, res) => {
 //     try {
