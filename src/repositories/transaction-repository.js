@@ -10,7 +10,13 @@ exports.create = (asset) => {
 
 exports.findByWalletId = async (walletId) => {
     return await Transactions
-        .find({ walletId: walletId })
+        .find({ walletId: walletId })        
+        .sort({ date: -1 });
+};
+
+exports.findByWalletIdAndTradingCode = async (walletId, tradingCode) => {
+    return await Transactions
+        .find({ walletId: walletId, "ticker.tradingCode": tradingCode })
         .sort({ date: -1 });
 };
 

@@ -51,5 +51,6 @@ router.get('/:walletId/fiis', assetController.listByFIIsWalletId);
 router.post('/:id/assets', walletController.addAsset);
 
 router.get('/:walletId/transactions', transactionController.findByWalletId);
+router.get('/:walletId/transactions/:tradingCode', transactionController.findByWalletId);
 
 module.exports = router;

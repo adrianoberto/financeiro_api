@@ -8,7 +8,16 @@ exports.findByWalletId = async (req, res) => {
     console.log(req.params);
 
     try {
-        const data = await transactionService.findByWalletId(req.params.walletId);
+
+        var data;
+
+        if(req?.params?.tradingCode) {
+            data = await transactionService.findByWalletIdAndTradindCode(req.params.walletId, req.params.tradingCode);
+        } else {
+            data = await transactionService.findByWalletId(req.params.walletId);
+        }
+
+        
         return baseController.createResponse(res, data || [], 200);
     } catch (e) {        
         return res.status(500).send({
