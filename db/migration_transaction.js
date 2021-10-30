@@ -6,14 +6,14 @@ var wallet = cursor.hasNext() ? cursor.next() : null;
 
 if(wallet) {
     
-    var walletId = wallet._id.str;
+    var walletId = "6071434be1db924aa0f2915d"//wallet._id.str;
     
     for(var asset of wallet.assets) {
         
         var newTransaction = {
             _id: asset._id,
             walletId: walletId,
-            ticker: { _id: asset.ticker._id },
+            ticker: { _id: asset.ticker._id, tradingCode: asset.ticker.tradingCode },
             stockbroker: { _id: asset.stockbroker._id },
             amount: asset.amount,
             unitPrice: asset.unitPrice,
