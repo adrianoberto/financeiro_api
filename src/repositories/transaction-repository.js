@@ -7,6 +7,14 @@ exports.create = (asset) => {
     return transaction.save();
 }
 
+
+exports.findByWalletId = async (walletId) => {
+    return await Transactions
+        .find({ walletId: walletId })
+        .sort({ date: -1 });
+};
+
+
 this.prepareNewTransaction = (asset) => {
     return {
         walletId: asset.walletId,

@@ -5,6 +5,8 @@ const { check } = require('express-validator');
 const assetController = require('../controllers/asset-controller');
 const walletController = require('../controllers/wallet-controller');
 
+const transactionController = require('../controllers/transaction-controller');
+
 
 //const controller = require('../controllers/wallet-controller');
 //const earningController = require('../controllers/earning-controller');
@@ -47,5 +49,7 @@ router.get('/:walletId/stocks', assetController.listByStocksWalletId);
 router.get('/:walletId/fiis', assetController.listByFIIsWalletId);
 
 router.post('/:id/assets', walletController.addAsset);
+
+router.get('/:walletId/transactions', transactionController.findByWalletId);
 
 module.exports = router;
