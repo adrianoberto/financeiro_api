@@ -9,7 +9,8 @@ const schema = new Schema({
   amount: { type: Number, required: true },
   unitPrice: { type: Number, required: true },
   totalPrice: { type: Number, required: true },  
-  date: { type: String }
+  date: { type: String },
+  updated: { type: String }
 });
 
 module.exports = mongoose.model('stage_assets', schema);

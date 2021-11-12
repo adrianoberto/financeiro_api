@@ -1,0 +1,36 @@
+{
+  userDataDir: '/home/adrianoberto/.config/NoSQLBooster for MongoDB',
+  oldUserDataDir: '/home/adrianoberto/.config/mongobooster'
+}
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: cache version is different 1 != 2
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: include in Compose files not supported: include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "Ə" U018f: <Multi_key> <e> <e> 			: "Ə" U018f
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "〝" U301d	# REVERSED DOUBLE PRIME QUOTATION MARK: <Multi_key> <quotedbl> <backslash> 	: "〝" U301d	# REVERSED DOUBLE PRIME QUOTATION MARK
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "〞" U301e	# DOUBLE PRIME QUOTATION MARK: <Multi_key> <quotedbl> <slash>  	: "〞" U301e	# DOUBLE PRIME QUOTATION MARK
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "Ç" Ccedilla	# LATIN CAPITAL LETTER C WITH CEDILLA: <dead_acute> <C> 			: "Ç" Ccedilla	# LATIN CAPITAL LETTER C WITH CEDILLA
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "ç" ccedilla	# LATIN SMALL LETTER C WITH CEDILLA: <dead_acute> <c> 			: "ç" ccedilla	# LATIN SMALL LETTER C WITH CEDILLA
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "Ȩ" U0228	# LATIN CAPITAL LETTER E WITH CEDILLA: <Multi_key> <comma> <E> 		: "Ȩ" U0228	# LATIN CAPITAL LETTER E WITH CEDILLA
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "ȩ" U0229	# LATIN SMALL LETTER E WITH CEDILLA: <Multi_key> <comma> <e> 		: "ȩ" U0229	# LATIN SMALL LETTER E WITH CEDILLA
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "Ḝ" U1E1C	# LATIN CAPITAL LETTER E WITH CEDILLA AND BREVE: <Multi_key> <U> <comma> <E> 		: "Ḝ" U1E1C	# LATIN CAPITAL LETTER E WITH CEDILLA AND BREVE
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "ḝ" U1E1D	# LATIN SMALL LETTER E WITH CEDILLA AND BREVE: <Multi_key> <U> <comma> <e> 		: "ḝ" U1E1D	# LATIN SMALL LETTER E WITH CEDILLA AND BREVE
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "ϓ" U03D3	# GREEK UPSILON WITH ACUTE AND HOOK SYMBOL: <Multi_key> <acute> <U03D2> 		: "ϓ" U03D3	# GREEK UPSILON WITH ACUTE AND HOOK SYMBOL
+
+(nosqlbooster4mongo:10135): Gtk-WARNING **: 12:08:51.968: Need to double-quote the value: "ϓ" U03D3	# GREEK UPSILON WITH ACUTE AND HOOK SYMBOL: <Multi_key> <apostrophe> <U03D2> 	: "ϓ" U03D3	# GREEK UPSILON WITH ACUTE AND HOOK SYMBOL
+[10171:1101/120852.391385:ERROR:buffer_manager.cc(488)] [.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION : glBufferData: <- error from previous GL command
+Checking for update
+Update for version 6.2.17 is not available (latest version: 6.2.17, downgrade is disallowed).
+checkForUpdatesAndNotify called, downloadPromise is null
+[10171:1101/121602.089494:ERROR:buffer_manager.cc(488)] [.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION : glBufferData: <- error from previous GL command
+[10171:1101/121603.363980:ERROR:buffer_manager.cc(488)] [.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION : glBufferData: <- error from previous GL command

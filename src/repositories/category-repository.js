@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Categories = mongoose.model('Categories');
 
-exports.list = async () => {
-    return await Categories.find({}).sort({'order': 'asc'});
+exports.list = () => {
+    return Categories.find({}).sort({'order': 'asc'});
 };
 
 exports.create = async data => {

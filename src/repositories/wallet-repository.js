@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Wallets = mongoose.model('Wallets');
+const Wallets = mongoose.model('stage_wallets');
 const Earnings = mongoose.model('Earnings');
 
 exports.listById = async (id) => {
@@ -145,6 +145,16 @@ exports.removeAsset = async (walletId, assetId) => {
     wallet.assets = assets;
 
     await Wallets.findByIdAndUpdate(walletId, {
+        $set: wallet
+    });
+};
+
+
+
+//
+
+exports.update = async (wallet) => {
+    await Wallets.findByIdAndUpdate(wallet._id, {
         $set: wallet
     });
 };

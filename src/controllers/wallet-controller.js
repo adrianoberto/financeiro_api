@@ -23,6 +23,17 @@ exports.addAsset = async (req, res) => {
     }
 };
 
+exports.calculate = async (req, res) => {
+    try {
+        const data = await walletService.calculate(req.params.id);
+        return res.status(200).send(data)
+    } catch (e) {        
+        return res.status(500).send({
+            message: e.toString()
+        });
+    }
+}
+
 
 
 // exports.listById = async (req, res) => {

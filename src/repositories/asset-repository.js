@@ -4,11 +4,11 @@ const StageAssets = mongoose.model('stage_assets');
 exports.listByWalletIdAndTradingType = async (walletId, tradingType) => {
     var assets = await StageAssets.aggregate([
         {
-            $match: { walletId: walletId, "ticker.category.type": tradingType }
+            $match: { walletId: walletId, "category.type": tradingType }
         },
         {
             $group: {
-                _id: "$ticker.tradingCode",
+                _id: "$ticker",
                 avgPrice: { $avg: "$unitPrice" },
                 totalPrice: { $sum: "$totalPrice" },
                 amount: { $sum: "$amount" },
@@ -20,7 +20,7 @@ exports.listByWalletIdAndTradingType = async (walletId, tradingType) => {
                         tradingType: "$$ROOT.tradingType",
                     }
                 },
-                type: { $first: "$ticker.category.type" }
+                type: { $first: "$$ROOT.category" }
             },
         },
         {

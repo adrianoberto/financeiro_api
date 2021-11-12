@@ -5,15 +5,16 @@ const cors = require('cors');
 // const founds = require('./models/found');
 //const tickers = require('./models/ticker');
 // const stockbrokers = require('./models/stockbroker');
-const wallet = require('./models/wallet');
-// const category = require('./models/category');
+const wallet = require('./models/stageWallet');
+const category = require('./models/category');
 // const transaction = require('./models/transactions');
-// const earning = require('./models/earning');
+const earning = require('./models/earning');
 
 const asset = require('./models/stageAsset');
 const tickers = require('./models/stageTicker');
 const stockbrokers = require('./models/stageStockbroker');
 const transactions = require('./models/stageTransaction');
+const quatations = require('./models/stageQuotation');
 
 
 require('dotenv').config();
@@ -70,6 +71,7 @@ const tickerRoutes =  require('./routes/ticker-routes');
 const stockbrokerRoutes =  require('./routes/stockbroker-routes');
 const walletsRoutes =  require('./routes/wallet-routes');
 // const categoriesRoutes =  require('./routes/category-routes');
+const quotationRoutes = require('./routes/quatation-routes');
 
 app.use('/', indexRoutes);
 //app.use('/stocks', stocksRoutes);
@@ -78,6 +80,8 @@ app.use('/tickers', tickerRoutes);
 app.use('/stockbrokers', stockbrokerRoutes);
 app.use('/wallets', walletsRoutes);
 //app.use('/categories', categoriesRoutes);
+
+app.use('/quotation', quotationRoutes)
 
 module.exports = app;
 

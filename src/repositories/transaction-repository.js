@@ -1,24 +1,52 @@
 const mongoose = require('mongoose');
-const Transactions = mongoose.model('stage_transactions');
+const StageTransactions = mongoose.model('stage_transactions');
 
 
 exports.create = (asset) => {
-    const transaction = new Transactions(this.prepareNewTransaction(asset));
+    const transaction = new StageTransactions(this.prepareNewTransaction(asset));
     return transaction.save();
 }
 
 
 exports.findByWalletId = async (walletId) => {
-    return await Transactions
+    return await StageTransactions
         .find({ walletId: walletId })        
         .sort({ date: -1 });
 };
 
 exports.findByWalletIdAndTradingCode = async (walletId, tradingCode) => {
-    return await Transactions
+    return await StageTransactions
         .find({ walletId: walletId, "ticker.tradingCode": tradingCode })
         .sort({ date: -1 });
 };
+
+this.getConsolidateTransactions = async (walletId, tradingType) => {
+    return await StageTransactions.aggregate([
+        {
+            $match: { walletId: walletId, "category.type": tradingType }
+        },
+        {
+            $group: {
+                _id: "$ticker",
+                avgPrice: { $avg: "$unitPrice" },
+                totalPrice: { $sum: "$totalPrice" },
+                amount: { $sum: "$amount" },
+                events: {
+                    $push: {
+                        unitPrice: "$$ROOT.unitPrice",
+                        amount: "$$ROOT.amount",
+                        totalPrice: "$$ROOT.totalPrice",
+                        tradingType: "$$ROOT.tradingType",
+                    }
+                },
+                type: { $first: "$$ROOT.category" }
+            },
+        },
+        {
+            $sort: { _id: 1 }
+        }
+    ]).exec();
+}
 
 
 this.prepareNewTransaction = (asset) => {
