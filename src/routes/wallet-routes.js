@@ -46,10 +46,12 @@ const transactionController = require('../controllers/transaction-controller');
 
 
 
+router.get('/:key', walletController.get);
 
-router.get('/:walletId/stocks', assetController.listByStocksWalletId);
 
-router.get('/:walletId/fiis', assetController.listByFIIsWalletId);
+// router.get('/:walletId/stocks', assetController.listByStocksWalletId);
+
+// router.get('/:walletId/fiis', assetController.listByFIIsWalletId);
 
 router.post('/:id/assets', walletController.addAsset);
 router.get('/:id/calculate', walletController.calculate);

@@ -31,7 +31,9 @@ function getTransactions(walletId, tradingType) {
 
 
 var wallet = {
-    walletId:  '6071434be1db924aa0f2915d',
+    userId: '6071434be1db924aa0f2915d',
+    name: 'Principal',
+    key: 'principal',
     categories: []
 };
 
@@ -39,7 +41,7 @@ var wallet = {
 var categories = db.categories.find();
 categories.forEach(category => {
     
-    var transactions = getTransactions('6071434be1db924aa0f2915d', category.type);
+    var transactions = getTransactions("617f5def2c5a9f4064db68b7", category.type);
     var assets = [];
     var totalPrice = 0;
     

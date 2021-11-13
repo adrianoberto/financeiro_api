@@ -3,6 +3,37 @@ const categoryRepository = require('../repositories/category-repository');
 const walletRepository = require('../repositories/wallet-repository');
 
 
+exports.listById = async (userId, walletKey, tradingType) => {
+    return walletRepository.listById(walletId);
+}
+
+
+exports.findWallet = async (userId, walletKey, tradingType) => {    
+
+    if (userId && walletKey && tradingType) {
+        return {
+            code: 200,
+            data: await this.listByUserIdAndKeyAndTradingType(
+                userId, walletKey, tradingType)
+        };
+    } 
+
+    if(userId && walletKey) {
+        return {
+            code: 200,
+            data: await walletRepository.listByUserIdAndKey(userId, walletKey)
+        }
+    }
+
+    return { code: 404, message: "Wallet is not found" }
+}
+
+
+this.listByUserIdAndKeyAndTradingType = async (userId, walletKey, tradingType) => {    
+    return await walletRepository.listByUserIdAndTradingType(userId, walletKey, tradingType);
+};
+
+
 // add asset to wallet
 exports.addAsset = async (asset) => {
     try {

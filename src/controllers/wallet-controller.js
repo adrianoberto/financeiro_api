@@ -4,8 +4,40 @@
 // const transactionRepository = require('../repositories/transaction-repository');
 // const earningRepository = require('../repositories/earning-repository');
 
+const baseController = require('./base-controller');
+
 
 const walletService = require('../services/wallet-service');
+
+// list by wallet id
+exports.listById = async (req, res) => {
+    try {
+        const data = await walletService.listById(req.params.id);
+        return res.status(200).json(data);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({
+            message: 'Falha ao carregar wallet'
+        });
+    }
+};
+
+
+exports.get = async (req, res) => {
+    try {
+        const response = await walletService.findWallet(
+            req?.headers?.userid, req.params.key, req?.query?.type
+        );
+
+        return baseController.createResponse(res, response.data || [], response.code);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({
+            message: 'Falha ao carregar wallet'
+        });
+    }
+};
+
 
 
 // create
@@ -23,6 +55,8 @@ exports.addAsset = async (req, res) => {
     }
 };
 
+
+// calculate
 exports.calculate = async (req, res) => {
     try {
         const data = await walletService.calculate(req.params.id);
@@ -36,17 +70,6 @@ exports.calculate = async (req, res) => {
 
 
 
-// exports.listById = async (req, res) => {
-//     try {
-//         const data = await repository.listById(req.params.id);
-//         return res.status(200).json(data);
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(500).send({
-//             message: 'Falha ao carregar wallet'
-//         });
-//     }
-// };
 
 // exports.findByWalletId = async (req, res) => {
 //     try {

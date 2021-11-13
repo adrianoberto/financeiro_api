@@ -3,7 +3,49 @@ const Wallets = mongoose.model('stage_wallets');
 const Earnings = mongoose.model('Earnings');
 
 exports.listById = async (id) => {
-    return await Wallets.findById(id);
+    //return await Wallets.findById(id);    
+    return await Wallets.findById({ _id: id,   });
+};
+
+exports.listByUserId = async (userId) => { 
+    return await Wallets.findById({ userId: userId, key: walletKey });
+};
+
+exports.listByUserIdAndKey = async (userId, walletKey) => { 
+    return await Wallets.find({ userId: userId, key: walletKey },'-userId -key');
+};
+
+exports.listByUserIdAndTradingType = async (userId, walletKey, tradingType) => {
+    var assets = await Wallets.aggregate([
+        {
+            "$match": {
+                "userId": userId,
+                "key": walletKey
+            }
+        },
+        {
+            "$project": {
+                "name": "$$ROOT.name",
+                "categories": {
+                    "$filter": {
+                        "input": "$categories",
+                        "as": "categories",
+                        "cond": {
+                            "$and": [
+                                { "$eq": ["$$categories.type", tradingType] }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            $sort: { _id: 1 }
+        }
+    ]).exec();
+
+
+    return assets;
 };
 
 exports.totals = async (id) => {
