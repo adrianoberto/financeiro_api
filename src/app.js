@@ -1,23 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-//const stocks = require('./models/stock');
-// const founds = require('./models/found');
-//const tickers = require('./models/ticker');
-// const stockbrokers = require('./models/stockbroker');
-const wallet = require('./models/stageWallet');
-const category = require('./models/category');
-// const transaction = require('./models/transactions');
-const earning = require('./models/earning');
-
-const asset = require('./models/stageAsset');
-const tickers = require('./models/stageTicker');
-const stockbrokers = require('./models/stageStockbroker');
-const transactions = require('./models/stageTransaction');
-const quatations = require('./models/stageQuotation');
 
 
 require('dotenv').config();
+
+
 
 // App
 const app = express();
@@ -31,7 +19,32 @@ app.use((req, res, next) => {
     next();
 });
 
-// Database
+
+// Carregar models
+require('./models/corretora');
+require('./models/ativo');
+require('./models/transacao');
+require('./models/posicao');
+
+
+// importação de rotas
+const indexRoutes = require('./routes/index-routes');
+const corretoraRoutes = require('./routes/corretora-routes');
+const ativoRoutes = require('./routes/ativo-routes');
+const transacaoRoutes = require('./routes/transacao-routes');
+const posicaoRoutes = require('./routes/posicao-routes');
+
+
+// Configurações de rotas
+app.use('/', indexRoutes);
+app.use('/teste', indexRoutes);
+app.use("/corretoras", corretoraRoutes);
+app.use("/ativos", ativoRoutes);
+app.use("/transacoes", transacaoRoutes);
+app.use("/posicoes", posicaoRoutes);
+
+
+// Banco de dados
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -63,25 +76,8 @@ process.on('SIGINT', () => {
 });
 
 
-// Load routes
-const indexRoutes = require('./routes/index-routes');
-//const stocksRoutes = require('./routes/stock-routes');
-// const foundRoutes =  require('./routes/found-routes');
-const tickerRoutes =  require('./routes/ticker-routes');
-const stockbrokerRoutes =  require('./routes/stockbroker-routes');
-const walletsRoutes =  require('./routes/wallet-routes');
-// const categoriesRoutes =  require('./routes/category-routes');
-const quotationRoutes = require('./routes/quatation-routes');
 
-app.use('/', indexRoutes);
-//app.use('/stocks', stocksRoutes);
-//app.use('/founds', foundRoutes);
-app.use('/tickers', tickerRoutes);
-app.use('/stockbrokers', stockbrokerRoutes);
-app.use('/wallets', walletsRoutes);
-//app.use('/categories', categoriesRoutes);
 
-app.use('/quotation', quotationRoutes)
 
 module.exports = app;
 
